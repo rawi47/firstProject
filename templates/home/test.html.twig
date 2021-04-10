@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+{% block title %}Page de test{% endblock %}
+{% block description %}Ceci est une page de test {% endblock %}
+{% block page_title %} 
+{{ page_title }}
+{% endblock %}
+{% block body %}
+       
+
+        {% if user.isLoggedIn %}
+            Hello {{ user.name }}!
+        {% endif %}
+
+    {% if user.name|length > 5 or user.isLoggedIn %}
+        <p> votre nom est tres long, pensé a changer ! </p>
+    {% endif %}
+
+    {% if user.name|lower == "Bouraoui"|lower %}
+            <p>Vous etes Bouraoui, tres bien !</p>
+
+
+    {% elseif user.name|lower == "Aicha"|lower %}
+            <p>Vous etes Aicha, tres bien !</p>
+
+    
+    {% else %}
+            <p>Qui etes vous  {{ user.name}} ?</p>
+        {% endif %}
+        {# c'est un commentaire #}
+{% endblock %}

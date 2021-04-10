@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+{% block description %}Ceci est une page de blog {% endblock %}
+{% block page_title %} 
+Blog
+{% endblock %}
+{% block body %}
+<p>{{ user.name }} {{ user.prenom }} from {{ pays }} added this comment on {{ comment.publishedAt|date }}</p>
+
+<a href="{{ path('app_blog_show') }}">show</a>
+{% endblock %}
+	

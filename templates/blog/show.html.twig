@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+{% block description %}Ceci est une page de blog show {% endblock %}
+{% block page_title %} 
+Blog show
+{% endblock %}
+{% block body %}
+
+<ul>
+{% for post in posts %}
+    <li>{{ post }}</li>
+{% endfor %}
+</ul>
+
+<img src="{{ absolute_url(asset('assets/img/logo.jpg')) }}" alt="Symfony!"/>
+
+<p>Username: {{ app.user.username ?? 'Anonymous user' }}</p>
+{% if app.debug %}
+    <p>Request method: {{ app.request.method }}</p>
+    <p>Application Environment: {{ app.environment }}</p>
+{% endif %}
+{% endblock %}
+
+
