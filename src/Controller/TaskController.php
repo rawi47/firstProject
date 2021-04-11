@@ -23,6 +23,17 @@ class TaskController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $agreeTerms = $form->get('agreeTerms')->getData();
+            
+            $entityManager = $this->getDoctrine()->getManager();
+
+
+
+        // tell Doctrine you want to (eventually) save the Product (no queries yet)
+        $entityManager->persist($task);
+
+        // actually executes the queries (i.e. the INSERT query)
+        $entityManager->flush();
             return $this->redirectToRoute('home');
         }
 
