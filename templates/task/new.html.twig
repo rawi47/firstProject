@@ -4,5 +4,5 @@
 Tasks
 {% endblock %}
 {% block body %}
-    {{ form(form) }}
+    {{ form(form, { 'attr': {'novalidate': 'novalidate'}}) }}
 {% endblock %}
