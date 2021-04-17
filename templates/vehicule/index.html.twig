@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+{% block description %}
+	entrez la liste des vehicules
+{% endblock %}
+{% block page_title %}
+	Vehicules
+{% endblock %}
+{% block body %}
+
+	<p>
+		<a href="{{ path("app_vehicule_new") }}">Ajouter vehicule</a>
+	</p>
+	<table>
+		<thead>
+			<tr>
+				<th>Marque</th>
+				<th>Couleur</th>
+				<th>matricule</th>
+				<th>Prix</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for vehicule in vehicules %}
+				<tr>
+					<td>{{ vehicule.marque}}</td>
+					<td>{{ vehicule.couleur}}</td>
+					<td>
+						<a href="{{ path("app_vehicule_show", {id: vehicule.id}) }}">{{ vehicule.matricule}}</td>
+					</td>
+					<td>{{ vehicule.prix}}</td>
+					<td>
+						<a href="{{ path("app_vehicule_edit", {id:vehicule.id}) }}">
+							Modifier
+						</a>
+
+                        <a href="{{ path("app_vehicule_delete", {id:vehicule.id}) }}">
+							Supprimer
+						</a>
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% endblock %}

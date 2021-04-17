@@ -9,7 +9,7 @@
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
       <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800,900" rel="stylesheet">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/railscasts.min.css">
-
+      <link rel="stylesheet" href="{{ asset('assets/plugins/bootstrap/css/bootstrap.min.css') }}">
       <link rel="stylesheet" href="{{ asset('assets/css/scribbler-global.css') }}">
       <link rel="stylesheet" href="{{ asset('assets/css/scribbler-landing.css') }}">
 
@@ -43,7 +43,7 @@
         <a href="{{ path('app_post_new') }}" class="link link--dark"><i class="fa fa-github"></i> Posts</a></li>
 
         <li class="menu__item">
-        <a href="{{ path('app_vehicule_new') }}" class="link link--dark"><i class="fa fa-github"></i> Vehicules</a></li>
+        <a href="{{ path('app_vehicule_index') }}" class="link link--dark"><i class="fa fa-github"></i> Vehicules</a></li>
       </ul>
     </nav>
 

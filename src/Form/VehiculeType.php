@@ -9,8 +9,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 //use Symfony\Component\Form\Extension\Core\Type\FloatType;
 use Symfony\Component\Form\FormBuilderInterface;
 use App\Entity\Vehicule;
-use Doctrine\DBAL\Types\FloatType;
-use Doctrine\DBAL\Types\StringType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class VehiculeType  extends AbstractType{
@@ -20,10 +20,41 @@ class VehiculeType  extends AbstractType{
 
         // Les champs qui doivent etre  afficher à l'ecran 
         $builder
-            ->add('matricule', TextType::class)
-            ->add('couleur', StringType::class)
-            ->add('prix',FloatType::class)
-            ->add('save', SubmitType::class)
+            ->add('matricule', TextType::class,[
+                "attr" => [
+                    "class" => "form-control"
+                ],
+                "label" => "Matricule"
+            ])
+            ->add('couleur', ChoiceType::class,[
+                "attr" => [
+                    "class" => "form-control"
+                ],
+                "label" => "Couleur",
+                "choices" => [
+                    "Rouge" => "red",
+                    "Bleu" => "blue"
+                ],
+                "placeholder" => "Choisir..."
+            ])
+            ->add('marque', TextType::class,[
+                "attr" => [
+                    "class" => "form-control"
+                ],
+                "label" => "Marque"
+            ])
+            ->add('prix',NumberType::class,[
+                "attr" => [
+                    "class" => "form-control"
+                ],
+                "label" => "Prix"
+            ])
+            ->add('save', SubmitType::class,[
+                "attr" => [
+                    "class" => "btn btn-primary"
+                ],
+                "label" => "Save"
+            ])
         ;
     }
 

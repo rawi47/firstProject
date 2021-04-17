@@ -18,7 +18,7 @@ class Vehicule
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string", length=255)
      */
     private $matricule;
 
@@ -42,12 +42,12 @@ class Vehicule
         return $this->id;
     }
 
-    public function getMatricule(): ?int
+    public function getMatricule(): ?string
     {
         return $this->matricule;
     }
 
-    public function setMatricule(int $matricule): self
+    public function setMatricule(string $matricule): self
     {
         $this->matricule = $matricule;
 

@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+{% block description %}
+	Vehicules
+{% endblock %}
+{% block page_title %}
+	Vehicules
+{% endblock %}
+{% block body %}
+
+	<h1>
+		{{ vehicule.marque}}
+	</h1>
+
+	<ul>
+
+		<li>
+			Couleur :
+			{{ vehicule.couleur }}</li>
+
+	</ul>
+{% endblock %}
