@@ -14,18 +14,6 @@ class PostController extends AbstractController
 {
 
 
-/**
-     * @Route("/post", name="app_post_index")
-     */
-
-    public function index( postRepository $vehiculeRepository): Response
-    {
-
-        return $this->render('post/index.html.twig', [
-           "posts" => $postrepository->findAll()
-        ]);
-
-    }
 
     /**
      * @Route("/post/{id}", name="app_post_show", requirements={"id":"\d+"})
@@ -95,4 +83,5 @@ class PostController extends AbstractController
         // actually executes the queries (i.e. the INSERT query)
         $entityManager->flush();
         return $this->redirectToRoute('app_post_index');
+    }
 }
