@@ -1,0 +1,44 @@
+% extends 'base.html.twig' %}
+{% block description %}
+	entrez la liste des posts
+{% endblock %}
+{% block page_title %}
+	Posts
+{% endblock %}
+{% block body %}
+
+	<p>
+		<a href="{{ path("app_post_new") }}">Ajouter post</a>
+	</p>
+	<table>
+		<thead>
+			<tr>
+				<th>Message</th>
+				<th>objet</th>
+			
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for post in posts %}
+				<tr>
+					<td>{{ post.message}}</td>
+					<td>{{ post.objet}}</td>
+					<td>
+						<a href="{{ path("app_post_show", {id: post.id}) }}">{{ post.objet}}</td>
+					</td>
+					
+					<td>
+						<a href="{{ path("app_post_edit", {id:post.id}) }}">
+							Modifier
+						</a>
+
+                        <a href="{{ path("app_post_delete", {id:post.id}) }}">
+							Supprimer
+						</a>
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% endblock %}
