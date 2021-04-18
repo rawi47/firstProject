@@ -5,7 +5,9 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     image_directory: '%kernel.project_dir%/public/assets/uploads/images'
-
+    devise: TND
+    target_devise : EURO
+    taux: 3.42
 
 services:
     # default configuration for services in *this* file
@@ -34,3 +36,8 @@ services:
     App\Service\FileUploader:
         arguments:
             $targetDirectory: '%image_directory%'
+    App\Service\Converter:
+        arguments:
+            $devise: '%devise%'
+            $target_devise : '%target_devise%'
+            $taux: '%taux%'

@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Vehicule;
 use App\Form\VehiculeType;
 use App\Repository\VehiculeRepository;
+use App\Service\Converter;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -67,7 +68,7 @@ class VehiculeController extends AbstractController
      * @Route("/vehicule/edit/{id}", name="app_vehicule_edit", requirements={"id":"\d+"})
      */
 
-    public function edit(Request $request, Vehicule $vehicule): Response
+    public function edit(Request $request, Vehicule $vehicule, Converter $converter): Response
     {
 
         $form = $this->createForm(VehiculeType::class, $vehicule);
@@ -76,6 +77,8 @@ class VehiculeController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($vehicule);
+
+            dd($converter->convert($vehicule->getPrix()));
 
             // actually executes the queries (i.e. the INSERT query)
             $entityManager->flush();
