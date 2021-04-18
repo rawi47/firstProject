@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Post;
 use App\Form\PostType;
 use App\Repository\PostRepository;
+use App\Service\FileUploader;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
@@ -36,7 +37,7 @@ class PostController extends AbstractController
      * @Route("/post", name="app_post_new")
      */
 
-    public function new(Request $request, SluggerInterface $slugger, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, FileUploader $fileUploader, EntityManagerInterface $entityManager): Response
     {
         $post = new post();
         $form = $this->createForm(PostType::class, $post);
@@ -46,23 +47,7 @@ class PostController extends AbstractController
             $imageFile = $form->get('imageFile')->getData();
 
             if ($imageFile) {
-                $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
-                // this is needed to safely include the file name as part of the URL
-                $safeFilename = $slugger->slug($originalFilename);
-                $newFilename = $safeFilename.'-'.uniqid().'.'.$imageFile->guessExtension();
-
-                // Move the file to the directory where brochures are stored
-                try {
-                    $imageFile->move(
-                        $this->getParameter('image_directory'),
-                        $newFilename
-                    );
-                } catch (FileException $e) {
-                    // ... handle exception if something happens during file upload
-                }
-
-                // updates the 'brochureFilename' property to store the PDF file name
-                // instead of its contents
+                $newFilename = $fileUploader->upload($imageFile);
                 $post->setImage($newFilename);
                 $entityManager->persist($post);
                 $entityManager->flush();
