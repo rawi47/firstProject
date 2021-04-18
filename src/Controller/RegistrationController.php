@@ -36,7 +36,7 @@ class RegistrationController extends AbstractController
 
             $entityManager->persist($user);
             $entityManager->flush();
-            $this->addFlash('success', "Your accound was created");
+            $this->addFlash('success', "Your account was created");
 
             $token = new UsernamePasswordToken($user, $password, 'main');
             $tokenStorage->setToken($token);
